@@ -14,7 +14,6 @@ import Daily from './Daily';
 import Weekly from './Weekly';
 import Monthly from './Monthly';
 
-
 const locales = {
   'en-US': enUS,
 };
@@ -27,17 +26,12 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-const views = {
-  day: Views.DAY,
-  week: Views.WEEK,
-  month: Views.MONTH,
-};
-
 export default function Calendar() {
-  const [view, setView] = useState(Views.MONTH);
+  // Define view as a string type that matches the actual values from react-big-calendar
+  const [view, setView] = useState<string>("month");
   const [date, setDate] = useState(new Date());
 
-  const handleViewChange = (newView: any) => {
+  const handleViewChange = (newView: string) => {
     setView(newView);
   };
 
@@ -81,11 +75,11 @@ export default function Calendar() {
 
   return (
     <Card className="p-4 md:p-6 bg-white shadow-sm">
-      <CalendarHeader onViewChange={handleViewChange}/>
+      <CalendarHeader onViewChange={handleViewChange} />
       <div className="h-[75vh]">
-      {view === Views.DAY && <Daily />}
-        {view === Views.WEEK && <Weekly />}
-        {view === Views.MONTH && <Monthly />}
+        {view === "day" && <Daily />}
+        {view === "week" && <Weekly />}
+        {view === "month" && <Monthly />}
       </div>
     </Card>
   );
