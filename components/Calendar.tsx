@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from 'react';
 import { Calendar as BigCalendar, dateFnsLocalizer, Views } from 'react-big-calendar';
 import { format, parse, startOfWeek, getDay } from 'date-fns';
@@ -11,6 +10,10 @@ import { Card, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Plus, Music, Briefcase } from 'lucide-react';
 import CalendarHeader from './Header';
+import Daily from './Daily';
+import Weekly from './Weekly';
+import Monthly from './Monthly';
+
 
 const locales = {
   'en-US': enUS,
@@ -25,14 +28,18 @@ const localizer = dateFnsLocalizer({
 });
 
 const views = {
-  day: true,
-  week: true,
-  month: true,
+  day: Views.DAY,
+  week: Views.WEEK,
+  month: Views.MONTH,
 };
 
 export default function Calendar() {
   const [view, setView] = useState(Views.MONTH);
   const [date, setDate] = useState(new Date());
+
+  const handleViewChange = (newView: any) => {
+    setView(newView);
+  };
 
   const eventStyleGetter = (event: EventType) => {
     const isSelected = false; // TODO: Add selection state
@@ -74,25 +81,11 @@ export default function Calendar() {
 
   return (
     <Card className="p-4 md:p-6 bg-white shadow-sm">
-      <CalendarHeader />
+      <CalendarHeader onViewChange={handleViewChange}/>
       <div className="h-[75vh]">
-        <BigCalendar
-          localizer={localizer}
-          events={mockEvents}
-          startAccessor="start"
-          endAccessor="end"
-          views={views}
-          view={view}
-          onView={setView}
-          date={date}
-          onNavigate={setDate}
-          eventPropGetter={eventStyleGetter}
-          components={{
-            event: CustomEvent,
-            toolbar: () => null, // Hide default toolbar
-          }}
-          className="custom-calendar"
-        />
+      {view === Views.DAY && <Daily />}
+        {view === Views.WEEK && <Weekly />}
+        {view === Views.MONTH && <Monthly />}
       </div>
     </Card>
   );

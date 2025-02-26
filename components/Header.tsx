@@ -1,51 +1,63 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
 
 // Define view constants
 const Views = {
-    DAY: "day",
-    WEEK: "week",
-    MONTH: "month"
+  DAY: "day",
+  WEEK: "week",
+  MONTH: "month",
 };
 
-const CalendarHeader = () => {
-    const [view, setView] = useState(Views.DAY);
+const CalendarHeader = ({ onViewChange }: any) => {
+  const [view, setView] = useState(Views.DAY);
 
-    return (
-        <div className="mb-6">
-            <div className="flex items-center justify-between w-full mb-4">
-                <h1 className="text-4xl font-bold tracking-tight">Calendar</h1>
-                <Button variant="link" className="text-pink-500 font-semibold">+ New event</Button>
-            </div>
-            <div className="bg-gray-100 p-2 rounded-lg shadow-sm">
+  const handleViewChange = (newView: any) => {
+    setView(newView);
+    onViewChange(newView);
+};
+
+  return (
+    <div className="mb-6">
+      <div className="flex items-center justify-between w-full mb-4">
+        <h1 className="text-4xl font-bold tracking-tight">Calendar</h1>
+        <Button variant="link" className="text-pink-500 font-semibold">
+          + New event
+        </Button>
+      </div>
+      <div className="bg-gray-100 p-2 rounded-lg shadow-sm">
         <div className="flex w-full p-1">
           <Button
             variant="outline"
-            className={`flex-1 ${view === Views.DAY ? "bg-white" : "bg-gray-100"}`}
-            onClick={() => setView(Views.DAY)}
+            className={`flex-1 ${
+              view === Views.DAY ? "bg-white" : "bg-gray-100"
+            }`}
+            onClick={() => handleViewChange(Views.DAY)}
           >
             Daily
           </Button>
           <Button
             variant="outline"
-            className={`flex-1 ${view === Views.WEEK ? "bg-white" : "bg-gray-100"}`}
-            onClick={() => setView(Views.WEEK)}
+            className={`flex-1 ${
+              view === Views.WEEK ? "bg-white" : "bg-gray-100"
+            }`}
+            onClick={() => handleViewChange(Views.WEEK)}
           >
             Weekly
           </Button>
           <Button
             variant="outline"
-            className={`flex-1 ${view === Views.MONTH ? "bg-white" : "bg-gray-100"}`}
-            onClick={() => setView(Views.MONTH)}
+            className={`flex-1 ${
+              view === Views.MONTH ? "bg-white" : "bg-gray-100"
+            }`}
+            onClick={() => handleViewChange(Views.MONTH)}
           >
             Monthly
           </Button>
         </div>
       </div>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default CalendarHeader;
