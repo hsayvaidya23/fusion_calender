@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Calendar Styles */
+.custom-calendar {
+  @apply font-sans border-none !important;
+}
+
+.custom-calendar .rbc-toolbar {
+  @apply mb-4;
+}
+
+.custom-calendar .rbc-toolbar button {
+  @apply bg-white text-gray-700 border border-gray-200 hover:bg-gray-50;
+}
+
+.custom-calendar .rbc-toolbar button.rbc-active {
+  @apply bg-blue-500 text-white border-blue-500;
+}
+
+.custom-calendar .rbc-header {
+  @apply py-3 font-medium text-gray-500 border-b border-gray-100;
+}
+
+.custom-calendar .rbc-month-view {
+  @apply border border-gray-100 rounded-lg overflow-hidden;
+}
+
+.custom-calendar .rbc-day-bg {
+  @apply transition-colors duration-200;
+}
+
+.custom-calendar .rbc-today {
+  @apply bg-blue-50/50;
+}
+
+.custom-calendar .rbc-off-range-bg {
+  @apply bg-gray-50/50;
+}
+
+.custom-calendar .rbc-event {
+  @apply shadow-sm border-none py-1;
+}
+
+.custom-calendar .rbc-event-content {
+  @apply font-medium;
+}
+
+.custom-calendar .rbc-show-more {
+  @apply text-blue-500 hover:text-blue-600 font-medium;
+}
+
+.custom-calendar .rbc-time-content {
+  @apply border-t border-gray-100;
+}
+
+.custom-calendar .rbc-time-header-content {
+  @apply border-l border-gray-100;
+}
+
+.custom-calendar .rbc-time-header {
+  @apply border-b border-gray-100;
+}
+
+.custom-calendar .rbc-timeslot-group {
+  @apply border-b border-gray-100;
+}
+
+.custom-calendar .rbc-time-slot {
+  @apply text-gray-500;
+}
+
+.custom-calendar .rbc-current-time-indicator {
+  @apply bg-blue-500;
+}
+
+.custom-calendar .rbc-date-cell {
+  @apply text-right p-2 text-sm text-gray-600;
+}
+
+.custom-calendar .rbc-row-segment {
+  @apply px-1;
+}
+
+.custom-calendar .rbc-day-slot .rbc-event {
+  @apply rounded-lg border shadow-sm;
+}
+
+.custom-calendar .rbc-day-slot .rbc-event-content {
+  @apply h-full flex items-start p-1;
+}
+
+.custom-calendar .rbc-month-row + .rbc-month-row {
+  @apply border-t border-gray-100;
+}
+
+.custom-calendar .rbc-day-bg + .rbc-day-bg {
+  @apply border-l border-gray-100;
+}
